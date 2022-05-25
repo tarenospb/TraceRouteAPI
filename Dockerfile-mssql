@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
+COPY StartServerSql.sh ./StartServerSql.sh
+COPY sql.sql ./sql.sql
+
+ENV ACCEPT_EULA Y
+ENV SA_PASSWORD SqL2019E!
+
+RUN ( /opt/mssql/bin/sqlservr --accept-eula & ) | grep -q "Service Broker manager has started" \
+    && ./StartServerSql.sh $SA_PASSWORD \
+    && pkill sqlservr

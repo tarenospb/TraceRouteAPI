@@ -1,0 +1,7 @@
+version: '3'
+services:
+   sql:
+     image: api:tracerouteapi
+     container_name: sql
+     ports:
+        - 1433:1433
